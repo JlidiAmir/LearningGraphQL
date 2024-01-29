@@ -1,0 +1,17 @@
+{
+  "name": "learninggraphql",
+  "version": "1.0.0",
+  "description": "This project is a series of sub projects that are aimed for making learning GraphQL a fun and eaiser experience.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "graphql": "^16.8.1"
+  }
+}
