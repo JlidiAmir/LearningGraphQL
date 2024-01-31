@@ -9,8 +9,12 @@ const typeDefs = `#graphql
 
 # This "Book" type defines the queryable fields for every book in our data source.
 type Book {
-    title: String 
-    author: String
+    title: String!
+    author: Author!
+}
+
+type Author{
+    name: String!
 }
 
 # The "Query" type is special: it lists all of the available queries that Clients can execute,
@@ -18,19 +22,33 @@ type Book {
 # or more books ( defined above ).
 type Query {
     books: [Book]
+    authors: [Author]
 }
 `;
 
 const books =[
     {
         title: "The Awkening",
-        author: "Kate Chopin",
+        author: {
+            name: "Kate Chopin"
+        },
     },
     {
         title: "City of Glass",
-        author: "Paul Auster",
+        author: {
+            name: "Paul Auster"
+        },
     },
 ];
+const authors =[
+    {
+        name: "Robert Kyosaki",
+        
+    },
+    {
+        name: "Paul Auster"
+    }
+]
 
 // Resolvers define how to fetch the types defined in your schema.
 // This resolver retrieves books from the "books" array above. 
@@ -38,6 +56,7 @@ const books =[
 const resolvers = {
     Query: {
         books: () => books,
+        authors: ()=> authors,
     },
 };
 
