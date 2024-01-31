@@ -17,12 +17,17 @@ type Author{
     name: String!
 }
 
-# The "Query" type is special: it lists all of the available queries that Clients can execute,
+# The "Query" type is special: it lists all of the available queries that Clients can execute to read data,
 # along with the return type for each. In this case, the "books" query returns an array of zero
 # or more books ( defined above ).
 type Query {
     books: [Book]
     authors: [Author]
+}
+
+# The "Mutation" Object type is special: it lists all of the availabe queries that Clients can execute to write data 
+type Mutation {
+    addBook(title: String, author: String): [Book]
 }
 `;
 
@@ -58,6 +63,13 @@ const resolvers = {
         books: () => books,
         authors: ()=> authors,
     },
+    Mutation: {
+        addBook: (_,args)=>{
+            console.log(args);
+            books.push({title:args.title,author:{name:args.author}});
+            return books;
+        }
+    }
 };
 
 // The ApolloServer constructor requires two parameters: your schema definition and your resolvers
